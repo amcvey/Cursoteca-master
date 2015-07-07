@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>wena</title>
+</head>
+<body>
+
+<h1> Wishlists </h1>
+<table>
+  <thead>
+    <tr>
+      <th>Photo</th>
+      <th>Title</th>
+      <th>Place</th>
+      <th>Description</th>
+      <th>Punctuation</th>
+      <th>Price</th>
+      <th>Category</th>
+      <th>Address</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+<tbody id='wishlist'>
+<%= render partial: "courses/wishlist", collection: @courses, as: :course %>
+ </tbody>
+
+</table>
+
+<br>
+
+
+  
+ 
+
+<%= link_to 'Back', courses_path %>
+</body>
+</html>

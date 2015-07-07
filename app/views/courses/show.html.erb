@@ -1,0 +1,95 @@
+
+<div class="course">
+
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Photo:</strong>
+  <%= image_tag(@course.photo, style: 'width:300px')  %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @course.title %>
+</p>
+
+<p>
+  <strong>Place:</strong>
+  <%= @course.place %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @course.description %>
+</p>
+
+<p>
+  <strong>Punctuation:</strong>
+  <%= @course.punctuation %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @course.price %>
+</p>
+
+<p>
+  <strong>Category:</strong>
+  <%= @course.category %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @course.address %>
+</p>
+
+
+<div style='width: 800px;'>
+  <div id="map" style='width: 800px; height: 400px;'></div>
+</div>
+
+<script type='text/javascript'> 
+handler = Gmaps.build('Google');
+handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+  markers = handler.addMarkers([
+    {
+      "lat": <%= @course.latitude %>,
+      "lng": <%= @course.longitude %>,
+      "picture": {
+        "url": "https://addons.cdn.mozilla.net/img/uploads/addon_icons/13/13028-64.png",
+        "width":  36,
+        "height": 36
+      },
+      "infowindow": "hello!"
+    }
+  ]);
+  handler.bounds.extendWith(markers);
+  handler.fitMapToBounds();
+  handler.getMap().setZoom(16);
+  markers = handler.addMarkers(<%=raw @hash.to_json %>);
+
+  
+});
+</script>
+
+
+</div>
+
+ <h3> Comments(<%= @course.comments.count %>) </h3>
+
+ <% if current_user %> 
+ Rating: <%= rating_for @course, "punctuation" %>
+ <br>
+ <% end %>
+<%= render partial: "comments/comment", collection: @last_comments %>
+
+<%= render 'comments/form' %>
+
+
+
+ 
+<%= link_to 'Edit', edit_course_path(@course) if can? :edit, @course %> |
+<%= link_to 'Back', courses_path %>
+</div>
+
+

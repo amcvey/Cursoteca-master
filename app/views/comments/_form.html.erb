@@ -1,0 +1,7 @@
+<div class="new-comment" style="background-color:lightgray">
+<%= form_for [@course, @comment] do |f| %>
+  <%= f.label :comment %>
+  <%= f.text_area :comment %> 
+
+  <%= f.submit "Send" %>
+  <% end %>  

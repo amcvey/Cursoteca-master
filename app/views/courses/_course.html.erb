@@ -1,0 +1,16 @@
+        <% @courses.each do |course| %>
+<tr>
+                <td><%= image_tag(course.photo, style: 'width:300px')  %></td>
+                <td><%= course.title %></td>
+                <td><%= course.place %></td>
+                <td><%= course.description %></td>
+                <td><%= course.punctuation %></td>
+                <td><%= course.price %></td>
+                <td><%= course.category %></td>
+                <td><%= course.address %></td>
+                <td><%= link_to 'Show', course %></td>
+                <td><%= link_to 'Edit', edit_course_path(course) if can? :edit, course %></td>
+                <td><%= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' } if can? :destroy, course %></td>
+                <td><%= link_to 'Add To Wishlist', add_to_wishlist_course_path(course) %></td>
+        <% end %>
+</tr>
