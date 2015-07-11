@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150702173401) do
+ActiveRecord::Schema.define(version: 20150710015128) do
 
   create_table "average_caches", force: :cascade do |t|
     t.integer  "rater_id"
@@ -58,6 +58,23 @@ ActiveRecord::Schema.define(version: 20150702173401) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "payments", force: :cascade do |t|
+    t.string   "order_id"
+    t.integer  "session_idcourse_id"
+    t.string   "transaction_id"
+    t.integer  "amount"
+    t.string   "authorization"
+    t.integer  "card_last_numbers"
+    t.boolean  "status"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.string   "course_id"
+    t.string   "session_id"
+    t.string   "payment_type"
+  end
+
+  add_index "payments", ["session_idcourse_id"], name: "index_payments_on_session_idcourse_id"
 
   create_table "rates", force: :cascade do |t|
     t.integer  "rater_id"

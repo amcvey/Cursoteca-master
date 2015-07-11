@@ -1,8 +1,13 @@
 Rails.application.routes.draw do
 
+  get 'payments/success'
+
   post '/rate' => 'rater#create', :as => 'rate'
   get 'comments/create'
   get 'courses/add_to_wishlist'
+  get "/courses/pay"
+  post 'courses/confirmation'
+  post '/payment/success'
   
 
   devise_for :users 
